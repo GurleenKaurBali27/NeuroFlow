@@ -1,0 +1,257 @@
+<mvc:View controllerName="neuroflow.controller.App" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core">
+  <App>
+    <pages>
+      <Page showHeader="true" class="nfPage">
+        <customHeader>
+          <Bar class="nfTopBar">
+            <contentLeft>
+              <HBox alignItems="Center" gap="8px">
+                <core:Icon src="sap-icon://radar-chart" class="nfHighlight" />
+                <Title level="H3" text="NEUROFLOW // OPERATIONAL COMMAND" class="nfTitle" />
+              </HBox>
+            </contentLeft>
+            <contentMiddle>
+              <HBox class="nfStatusBar" justifyContent="Center" alignItems="Center">
+                <items>
+                  <HBox alignItems="Center" gap="6px">
+                    <core:Icon src="sap-icon://globe" size="11px" />
+                    <Text text="REGION: US-EAST-1" />
+                  </HBox>
+                  <HBox alignItems="Center" gap="6px" class="sapUiMediumMarginBegin">
+                    <core:Icon src="sap-icon://incident" size="11px" class="{= ${app>/health/incidents} > 0 ? 'nfPulseRed' : 'muted' }" />
+                    <Text text="ACTIVE INCIDENTS: {app>/health/incidents}" class="{= ${app>/health/incidents} > 0 ? 'nfHighlight' : 'muted' }" />
+                  </HBox>
+                  <HBox alignItems="Center" gap="6px" class="sapUiMediumMarginBegin">
+                    <core:Icon src="sap-icon://database" size="11px" />
+                    <Text text="DATA STREAM: ACTIVE" />
+                  </HBox>
+                </items>
+              </HBox>
+            </contentMiddle>
+            <contentRight>
+              <HBox gap="8px" alignItems="Center">
+                <Button id="themeToggleBtn" icon="sap-icon://light-mode" press=".onToggleTheme" tooltip="Toggle operational theme (Light/Dark)" class="nfIconBtn" />
+                <Button icon="sap-icon://refresh" press=".onRefreshMetrics" tooltip="Recalibrate telemetry telemetry feed" class="nfIconBtn" />
+              </HBox>
+            </contentRight>
+          </Bar>
+        </customHeader>
+
+        <content>
+          <HBox class="nfMainLayout" fitContainer="true">
+            <!-- Left Navigation Rail (Futuristic HUD style) -->
+            <VBox class="nfNavRail">
+              <VBox class="nfNavTop">
+                <Button icon="sap-icon://home" press=".onNavHome" tooltip="Primary Overview Console" class="navBtn" />
+                <Button icon="sap-icon://process" press=".onNavWorkflows" tooltip="Workflow SLA Pipeline" class="navBtn" />
+                <Button icon="sap-icon://activity-items" press=".onNavMetrics" tooltip="Telemetry Diagnostics" class="navBtn" />
+                <Button icon="sap-icon://bell" press=".onNavEvents" tooltip="Live Security Events" class="navBtn" />
+              </VBox>
+              <VBox class="nfNavFooter" alignItems="Center">
+                <core:Icon src="sap-icon://shield" size="14px" class="sapUiTinyMarginBottom nfHighlight" />
+                <Text text="OP-v1.0" />
+              </VBox>
+            </VBox>
+
+            <!-- Central canvas -->
+            <VBox class="nfCanvas" width="70%">
+              <!-- Loader overlay for premium dashboard view switching -->
+              <core:HTML content="&lt;div id='nfLoaderOverlay' class='nfLoader'&gt;&lt;div class='nfLoaderRing'&gt;&lt;/div&gt;&lt;/div&gt;" />
+
+              <!-- High-Performance KPI Row -->
+              <HBox class="kpiRow" justifyContent="SpaceBetween">
+                <items>
+                  <!-- Latency KPI -->
+                  <VBox class="kpiTile nfGlow">
+                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                      <Text text="NETWORK P99 LATENCY" class="kpiLabel" />
+                      <Text text="●" class="nfPulse {= ${app>/metrics/latency/value} > 250 ? 'nfPulseRed' : 'nfPulseGreen' }" />
+                    </HBox>
+                    <HBox alignItems="End" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
+                      <Title level="H1" text="{app>/metrics/latency/display}" class="kpiValue" />
+                      <VBox alignItems="End">
+                        <Text text="ms" class="kpiUnit" />
+                        <Text text="{= ${app>/metrics/latency/value} > 250 ? '↑ DEGRADED' : '↓ OPTIMAL' }" class="kpiTrendText {= ${app>/metrics/latency/value} > 250 ? 'nfPulseRed' : 'nfPulseGreen' }" />
+                      </VBox>
+                    </HBox>
+                  </VBox>
+
+                  <!-- Errors KPI -->
+                  <VBox class="kpiTile nfGlow">
+                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                      <Text text="ERROR RATE CONTEMPTION" class="kpiLabel" />
+                      <Text text="●" class="nfPulse {= ${app>/metrics/errors/value} > 5 ? 'nfPulseRed' : 'nfPulseGreen' }" />
+                    </HBox>
+                    <HBox alignItems="End" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
+                      <Title level="H1" text="{app>/metrics/errors/display}" class="kpiValue" />
+                      <VBox alignItems="End">
+                        <Text text="/min" class="kpiUnit" />
+                        <Text text="{= ${app>/metrics/errors/value} > 5 ? '↑ ANOMALY' : '↓ NOMINAL' }" class="kpiTrendText {= ${app>/metrics/errors/value} > 5 ? 'nfPulseRed' : 'nfPulseGreen' }" />
+                      </VBox>
+                    </HBox>
+                  </VBox>
+
+                  <!-- Throughput KPI -->
+                  <VBox class="kpiTile nfGlow">
+                    <HBox justifyContent="SpaceBetween" alignItems="Center">
+                      <Text text="INGRESS THROUGHPUT" class="kpiLabel" />
+                      <Text text="●" class="nfPulse {= ${app>/metrics/throughput/value} &lt; 450 ? 'nfPulseRed' : 'nfPulseGreen' }" />
+                    </HBox>
+                    <HBox alignItems="End" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
+                      <Title level="H1" text="{app>/metrics/throughput/display}" class="kpiValue" />
+                      <VBox alignItems="End">
+                        <Text text="req/s" class="kpiUnit" />
+                        <Text text="{= ${app>/metrics/throughput/value} &lt; 450 ? '↓ DEGRADED' : '↑ OPTIMAL' }" class="kpiTrendText {= ${app>/metrics/throughput/value} &lt; 450 ? 'nfPulseRed' : 'nfPulseGreen' }" />
+                      </VBox>
+                    </HBox>
+                  </VBox>
+                </items>
+              </HBox>
+
+              <!-- Central operational container panel -->
+              <Panel class="opsPanel" id="mainOpsPanel">
+                <headerToolbar>
+                  <Toolbar class="nfPanelToolbar">
+                    <HBox alignItems="Center" gap="6px">
+                      <core:Icon src="sap-icon://dimension" class="nfHighlight" />
+                      <Title text="OPERATIONAL DESK CANVAS" level="H3" class="nfPanelTitle" />
+                    </HBox>
+                    <ToolbarSpacer />
+                    <SegmentedButton selectedKey="all" select=".onToggleCanvasView">
+                      <items>
+                        <SegmentedButtonItem key="all" icon="sap-icon://grid" tooltip="Overview Workspace" />
+                        <SegmentedButtonItem key="events" icon="sap-icon://bell" tooltip="Live Security Event Log" />
+                        <SegmentedButtonItem key="workflows" icon="sap-icon://process" tooltip="Workflow SLA Pipeline" />
+                        <SegmentedButtonItem key="health" icon="sap-icon://sys-monitor" tooltip="Physical Health Monitors" />
+                        <SegmentedButtonItem key="kpis" icon="sap-icon://line-charts" tooltip="Operational Metrics &amp; Trends" />
+                        <SegmentedButtonItem key="twin" icon="sap-icon://org-chart" tooltip="Digital Twin Mesh Topology" />
+                      </items>
+                    </SegmentedButton>
+                  </Toolbar>
+                </headerToolbar>
+                <HBox class="canvasInner" justifyContent="SpaceBetween">
+                  <!-- Dashboard View Layout -->
+                  <VBox id="dashboardLayout" width="65%" class="opsLeft" visible="true">
+                    <Panel id="feedPanel" headerText="LIVE OPERATIONAL EVENT LOG" class="feedPanel">
+                      <List id="eventFeed" items="{app>/events}" mode="None">
+                        <StandardListItem title="{app>message}" info="{app>priority}" description="{app>timestamp}" type="Inactive" />
+                      </List>
+                    </Panel>
+                    <Panel id="workflowPanel" headerText="PREDICTIVE SLA WORKFLOW PIPELINES" class="workflowPanel">
+                      <List items="{app>/workflows}" mode="None">
+                        <CustomListItem class="feedItem">
+                          <VBox class="sapUiSmallMargin" width="98%">
+                            <HBox justifyContent="SpaceBetween" alignItems="Center">
+                              <HBox alignItems="Center" gap="8px">
+                                <core:Icon src="{= ${app>status} === 'ESCALATED' || ${app>status} === 'Escalated' ? 'sap-icon://warning' : 'sap-icon://settings' }" class="{= ${app>status} === 'ESCALATED' || ${app>status} === 'Escalated' ? 'nfPulseRed' : 'nfPulseGreen' }" />
+                                <Title level="H4" text="{app>name}" class="wfTitle" />
+                              </HBox>
+                              <HBox alignItems="Center" gap="6px">
+                                <Text text="{app>status}" class="nfHighlight textBold" />
+                                <Text text="●" class="nfPulse {= ${app>status} === 'ESCALATED' || ${app>status} === 'Escalated' ? 'nfPulseRed' : 'nfPulseGreen' }" />
+                              </HBox>
+                            </HBox>
+                            
+                            <HBox justifyContent="SpaceBetween" alignItems="End" class="sapUiSmallMarginTop">
+                              <VBox gap="4px">
+                                <HBox alignItems="Center" gap="6px">
+                                  <core:Icon src="sap-icon://employee" size="11px" />
+                                  <Text text="Owner Assignment: {app>owner}" class="muted" />
+                                </HBox>
+                                <HBox alignItems="Center" gap="6px">
+                                  <core:Icon src="sap-icon://time-entry-request" size="11px" />
+                                  <Text text="SLA Health Status: {= ${app>slaStatus} || 'WITHIN_SLA' }" class="muted" />
+                                </HBox>
+                              </VBox>
+                              
+                              <HBox gap="8px">
+                                <Button text="Approve Playbook Step" icon="sap-icon://accept" press=".onApproveWorkflowStep" type="Accept" 
+                                        visible="{= ${app>status} === 'PENDING_APPROVAL' || ${app>status} === 'PendingApproval' }" class="severityBtn" />
+                                <Button text="Force Override Escalation" icon="sap-icon://alert" press=".onEscalateWorkflowManual" type="Reject"
+                                        visible="{= ${app>status} === 'PENDING_APPROVAL' || ${app>status} === 'PendingApproval' || ${app>status} === 'RUNNING' || ${app>status} === 'Running' }" class="severityBtn" />
+                              </HBox>
+                            </HBox>
+                            
+                            <ProgressIndicator percentValue="{app>progress}" displayValue="PLAYBOOK REMEDIATION STAGE PROGRESS: {app>progress}%" class="sapUiSmallMarginTop" />
+                          </VBox>
+                        </CustomListItem>
+                      </List>
+                    </Panel>
+                  </VBox>
+
+                  <!-- Digital Twin Topology Layout -->
+                  <VBox id="digitalTwinLayout" width="65%" class="twinLayout" visible="false">
+                    <core:HTML content="&lt;div id='digitalTwinCanvas' class='digitalTwinCanvas'&gt;&lt;/div&gt;" />
+                  </VBox>
+
+                  <!-- Secondary Telemetry Desk Layout -->
+                  <VBox id="rightLayout" width="32%" class="opsRight">
+                    <Panel id="healthPanel" headerText="PHYSICAL MESH HEALTH TELEMETRY" class="healthPanel">
+                      <VBox gap="12px" class="sapUiSmallMargin">
+                        <VBox gap="4px">
+                          <Text text="SYSTEM CLUSTER CPU METER" class="telemetryMeterHeader" />
+                          <ProgressIndicator percentValue="{app>/health/cpu}" displayValue="CPU UTILIZATION: {app>/health/cpu}%" />
+                        </VBox>
+                        <VBox gap="4px">
+                          <Text text="SYSTEM CLUSTER RAM METER" class="telemetryMeterHeader" />
+                          <ProgressIndicator percentValue="{app>/health/memory}" displayValue="HEAP MEMORY PRESSURE: {app>/health/memory}%" />
+                        </VBox>
+                        <HBox alignItems="Center" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
+                          <HBox alignItems="Center" gap="6px">
+                            <core:Icon src="sap-icon://connected" size="11px" />
+                            <Text text="Cluster status: {app>/health/nodeStatus}" class="muted" />
+                          </HBox>
+                          <Text text="●" class="nfPulse {= ${app>/health/nodeStatus} === 'DEGRADED' || ${app>/health/nodeStatus} === 'CRITICAL' ? 'nfPulseRed' : 'nfPulseGreen' }" />
+                        </HBox>
+                      </VBox>
+                    </Panel>
+                    
+                    <Panel id="kpiPanel" headerText="SLA COMPLIANCE COMPONENT INDEX" class="kpiPanel">
+                      <List items="{app>/kpis}" mode="None">
+                        <StandardListItem title="{app>label}" info="{app>value}" infoState="{= ${app>trend} === 'up' ? 'Success' : 'Warning'}" type="Inactive" />
+                      </List>
+                    </Panel>
+                  </VBox>
+                </HBox>
+              </Panel>
+            </VBox>
+
+            <!-- Right AI intelligence panel -->
+            <VBox class="nfAIPanel">
+              <Panel headerText="COGNITIVE INFERENCE INSIGHTS" class="aiPanelInner">
+                <List items="{app>/insights}" mode="None">
+                  <CustomListItem class="feedItem">
+                    <VBox gap="4px" class="sapUiSmallMargin">
+                      <HBox justifyContent="SpaceBetween" alignItems="Center">
+                        <HBox alignItems="Center" gap="6px">
+                          <core:Icon src="sap-icon://lightbulb" class="{= ${app>severity} === 'high' ? 'nfPulseRed' : 'nfPulseGreen' }" />
+                          <Text text="{app>title}" class="wfTitle textBold" />
+                        </HBox>
+                        <Text text="{= ${app>severity}.toUpperCase() }" class="kpiTrendText {= ${app>severity} === 'high' ? 'nfPulseRed' : 'muted' }" />
+                      </HBox>
+                      <Text text="{app>summary}" class="muted" />
+                    </VBox>
+                  </CustomListItem>
+                </List>
+              </Panel>
+              
+              <Panel headerText="AI AGENT REMEDIATION MESH" class="aiRec">
+                <VBox class="sapUiSmallMargin" gap="8px">
+                  <HBox alignItems="Center" gap="6px">
+                    <core:Icon src="sap-icon://machine-learning" class="nfHighlight" />
+                    <Text text="AI Coprocessor: ENGINE ACTIVE" class="aiAgentTitle" />
+                  </HBox>
+                  <Text text="Remediation strategy evaluated. Standard action vectors queued for instant network recovery and load balancing optimization." class="muted" />
+                  <HBox alignItems="Center" gap="6px" class="sapUiTinyMarginTop">
+                    <core:Icon src="sap-icon://journey" size="11px" />
+                    <Text text="Next playbook target: GPU thread pool clean" class="muted textSmall" />
+                  </HBox>
+                </VBox>
+              </Panel>
+            </VBox>
+          </HBox>
+        </content>
+      </Page>
+    </pages>
+  </App>
+</mvc:View>

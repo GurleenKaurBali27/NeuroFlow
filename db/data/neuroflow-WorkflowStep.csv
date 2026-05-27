@@ -1,0 +1,7 @@
+ID,createdAt,createdBy,modifiedAt,modifiedBy,workflow_ID,stepSequence,name,status,description
+step-0000-0000-0000-000000000001,2026-05-26T09:05:00Z,system,2026-05-26T09:06:00Z,system,flow-0000-0000-0000-000000000001,1,Trigger Memory Diagnostics,DONE,Completed analysis of current memory mapping and allocation tables
+step-0000-0000-0000-000000000002,2026-05-26T09:06:00Z,system,2026-05-26T09:15:00Z,system,flow-0000-0000-0000-000000000001,2,Isolate Affected CUDA Contexts,PROCESSING,Currently isolating application CUDA sessions to prevent wider host failure
+step-0000-0000-0000-000000000003,2026-05-26T09:06:00Z,system,2026-05-26T09:06:00Z,system,flow-0000-0000-0000-000000000001,3,Recycle Target Services,PENDING,Recycle the inference container to completely clear GPU VRAM leak
+step-0000-0000-0000-000000000004,2026-05-26T09:22:00Z,system,2026-05-26T09:25:00Z,system,flow-0000-0000-0000-000000000003,1,Identify Source Rogue Port,DONE,Identified high-frequency connection attempts on port 44341
+step-0000-0000-0000-000000000005,2026-05-26T09:25:00Z,system,2026-05-26T09:35:00Z,system,flow-0000-0000-0000-000000000003,2,Apply Security Rule on Router,PROCESSING,Applying inbound/outbound IP block rule on main firewall routers
+step-0000-0000-0000-000000000006,2026-05-26T09:25:00Z,system,2026-05-26T09:25:00Z,system,flow-0000-0000-0000-000000000003,3,Verify Security Uptime Status,PENDING,Re-scan port interfaces to confirm standard compliance

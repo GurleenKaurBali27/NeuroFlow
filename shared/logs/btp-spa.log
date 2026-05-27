@@ -1,0 +1,96 @@
+[2026-05-26T06:11:16.377Z] [SPA TRIGGER: Workflow_Step_Approved] Payload: {
+  "definitionId": "neuroflow.processes.incidentremediation.v1.Workflow_Step_Approved",
+  "context": {
+    "systemId": "NEUROFLOW-CORE-US",
+    "processInstanceId": "spa-inst-cfa532b1",
+    "triggerTime": "2026-05-26T06:11:16.377Z",
+    "eventContext": {
+      "workflowId": "wf-demo-pending",
+      "workflowName": "SLA Demo: GPU Cluster Overheat Remediation",
+      "actor": "OPERATIONAL_MANAGER",
+      "notes": "Approved via operator HUD Command Panel",
+      "action": "APPROVED"
+    }
+  }
+}
+
+[2026-05-26T06:18:35.447Z] [SPA TRIGGER: Workflow_Escalated] Payload: {
+  "definitionId": "neuroflow.processes.incidentremediation.v1.Workflow_Escalated",
+  "context": {
+    "systemId": "NEUROFLOW-CORE-US",
+    "processInstanceId": "spa-inst-44f79c1f",
+    "triggerTime": "2026-05-26T06:18:35.447Z",
+    "eventContext": {
+      "workflowId": "wf-demo-pending",
+      "workflowName": "SLA Demo: GPU Cluster Overheat Remediation",
+      "actor": "OPERATIONS_MONITOR",
+      "escalatedTo": "John Smith (AI Eng Head)",
+      "reason": "Manual operator override from central cockpit."
+    }
+  }
+}
+
+[2026-05-26T06:19:32.245Z] [SPA TRIGGER: Workflow_Step_Approved] Payload: {
+  "definitionId": "neuroflow.processes.incidentremediation.v1.Workflow_Step_Approved",
+  "context": {
+    "systemId": "NEUROFLOW-CORE-US",
+    "processInstanceId": "spa-inst-439698b7",
+    "triggerTime": "2026-05-26T06:19:32.245Z",
+    "eventContext": {
+      "workflowId": "wf-demo-pending",
+      "workflowName": "SLA Demo: GPU Cluster Overheat Remediation",
+      "actor": "OPERATIONAL_MANAGER",
+      "notes": "Approved via clean Node verification script",
+      "action": "APPROVED"
+    }
+  }
+}
+
+[2026-05-26T06:20:24.876Z] [SPA TRIGGER: Workflow_Step_Approved] Payload: {
+  "definitionId": "neuroflow.processes.incidentremediation.v1.Workflow_Step_Approved",
+  "context": {
+    "systemId": "NEUROFLOW-CORE-US",
+    "processInstanceId": "spa-inst-836d690d",
+    "triggerTime": "2026-05-26T06:20:24.876Z",
+    "eventContext": {
+      "workflowId": "wf-demo-pending",
+      "workflowName": "SLA Demo: GPU Cluster Overheat Remediation",
+      "actor": "OPERATIONAL_MANAGER",
+      "notes": "Approved via operator HUD Command Panel",
+      "action": "APPROVED"
+    }
+  }
+}
+
+[2026-05-26T06:20:30.146Z] [SPA TRIGGER: Workflow_Escalated] Payload: {
+  "definitionId": "neuroflow.processes.incidentremediation.v1.Workflow_Escalated",
+  "context": {
+    "systemId": "NEUROFLOW-CORE-US",
+    "processInstanceId": "spa-inst-436ea702",
+    "triggerTime": "2026-05-26T06:20:30.146Z",
+    "eventContext": {
+      "workflowId": "wf-demo-pending",
+      "workflowName": "SLA Demo: GPU Cluster Overheat Remediation",
+      "actor": "OPERATIONS_MONITOR",
+      "escalatedTo": "John Smith (AI Eng Head)",
+      "reason": "Manual operator override from central cockpit."
+    }
+  }
+}
+
+[2026-05-26T18:28:33.114Z] [SPA TRIGGER: Workflow_Escalated] Payload: {
+  "definitionId": "neuroflow.processes.incidentremediation.v1.Workflow_Escalated",
+  "context": {
+    "systemId": "NEUROFLOW-CORE-US",
+    "processInstanceId": "spa-inst-94b52138",
+    "triggerTime": "2026-05-26T18:28:33.114Z",
+    "eventContext": {
+      "workflowId": "wf-1",
+      "workflowName": "Ingest Pipeline",
+      "actor": "OPERATIONS_MONITOR",
+      "escalatedTo": "John Smith (AI Eng Head)",
+      "reason": "Operator manual override from Command Desk."
+    }
+  }
+}
+

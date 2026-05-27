@@ -1,0 +1,4 @@
+ID,createdAt,createdBy,modifiedAt,modifiedBy,nodeName,cpuUsage,memoryUsage,diskUsage,status,activeConnections
+health-0000-0000-0000-000000000001,2026-05-26T09:40:00Z,monitoring,2026-05-26T09:40:00Z,monitoring,Core-Gateway-01,15.20,38.50,42.10,HEALTHY,1540
+health-0000-0000-0000-000000000002,2026-05-26T09:40:00Z,monitoring,2026-05-26T09:40:00Z,monitoring,GPU-Inference-Node-01,98.50,96.80,68.40,CRITICAL,42
+health-0000-0000-0000-000000000003,2026-05-26T09:40:00Z,monitoring,2026-05-26T09:40:00Z,monitoring,Storage-Archive-03,45.60,78.20,89.50,DEGRADED,12

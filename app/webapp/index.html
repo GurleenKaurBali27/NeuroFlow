@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>NeuroFlow</title>
+    <!-- Real-time Socket.IO Client -->
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- Interactive Topology Engine: Cytoscape.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.29.2/cytoscape.min.js"></script>
+
+    <script
+      id="sap-ui-bootstrap"
+      src="https://ui5.sap.com/resources/sap-ui-core.js?v=1.0.0"
+      data-sap-ui-theme="sap_horizon_dark"
+      data-sap-ui-resourceroots='{"neuroflow":"./"}'
+      data-sap-ui-async="true"
+      data-sap-ui-bindingsyntax="complex"
+    ></script>
+    <script>
+      // Force cache busting for all NeuroFlow modules
+      sap.ui.require.preload({
+        "neuroflow/model/ModelManager": {},
+        "neuroflow/service/EventStreamService": {},
+        "neuroflow/util/DebugUtil": {}
+      }, null, { preloadUrl: "?v=1.0.0" });
+
+      sap.ui.require(["sap/ui/core/ComponentContainer"], function(ComponentContainer) {
+        new ComponentContainer({
+          name: "neuroflow",
+          settings: {
+            id: "neuroflowComponent"
+          },
+          async: true
+        }).placeAt(document.body);
+      });
+    </script>
+  </head>
+  <body class="sapUiBody">
+    <!-- Floating operational alert portal -->
+    <div id="notificationArea" class="notificationArea"></div>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{"timestamp":"2026-05-26T05:11:29.359Z","level":"info","component":"AiEngine","message":"Initializing operational incident analysis...","metadata":{"incidentTitle":"GPU Out of Memory Leak"}}
+{"timestamp":"2026-05-26T05:11:29.362Z","level":"info","component":"AiEngine","message":"Resolved primary provider: Gemini","metadata":{"model":"gemini-1.5-flash"}}
+{"timestamp":"2026-05-26T05:11:29.365Z","level":"info","component":"GeminiProvider","message":"Dispatching query to gemini-1.5-flash (temperature: 0.2)...","metadata":{}}
+{"timestamp":"2026-05-26T05:11:29.368Z","level":"telemetry","component":"GeminiProvider","message":"Inference telemetry captured successfully","metadata":{"latencyMs":180,"promptTokens":140,"completionTokens":180,"totalTokens":320,"model":"gemini-1.5-flash"}}
+{"timestamp":"2026-05-26T05:11:29.369Z","level":"info","component":"AiEngine","message":"Incident analysis completed successfully using primary provider (Gemini).","metadata":{}}
+{"timestamp":"2026-05-26T05:11:29.370Z","level":"info","component":"AiEngine","message":"Initializing operational incident analysis...","metadata":{"incidentTitle":"GPU Out of Memory Leak"}}
+{"timestamp":"2026-05-26T05:11:29.370Z","level":"info","component":"AiEngine","message":"Resolved primary provider: OpenAI","metadata":{"model":"gpt-4o-mini"}}
+{"timestamp":"2026-05-26T05:11:29.371Z","level":"info","component":"OpenAIProvider","message":"Dispatching query to gpt-4o-mini (temperature: 0.2)...","metadata":{}}
+{"timestamp":"2026-05-26T05:11:29.371Z","level":"telemetry","component":"OpenAIProvider","message":"Inference telemetry captured successfully","metadata":{"latencyMs":220,"promptTokens":155,"completionTokens":190,"totalTokens":345,"model":"gpt-4o-mini"}}
+{"timestamp":"2026-05-26T05:11:29.372Z","level":"info","component":"AiEngine","message":"Incident analysis completed successfully using primary provider (OpenAI).","metadata":{}}
+{"timestamp":"2026-05-26T05:11:29.372Z","level":"info","component":"AiEngine","message":"Initializing operational incident analysis...","metadata":{"incidentTitle":"GPU Out of Memory Leak"}}
+{"timestamp":"2026-05-26T05:11:29.372Z","level":"info","component":"AiEngine","message":"Resolved primary provider: Gemini","metadata":{"model":"gemini-1.5-flash"}}
+{"timestamp":"2026-05-26T05:11:29.373Z","level":"info","component":"GeminiProvider","message":"Dispatching query to gemini-1.5-flash (temperature: 0.2)...","metadata":{}}
+{"timestamp":"2026-05-26T05:11:29.373Z","level":"warn","component":"GeminiLimiter","message":"Rate limit hit (Attempt 1/3). Retrying in 1231ms...","metadata":{"error":"API returned HTTP 429: Too Many Requests","retryAfterHeader":1}}
+{"timestamp":"2026-05-26T05:11:30.604Z","level":"info","component":"GeminiProvider","message":"Dispatching query to gemini-1.5-flash (temperature: 0.2)...","metadata":{}}
+{"timestamp":"2026-05-26T05:11:30.605Z","level":"telemetry","component":"GeminiProvider","message":"Inference telemetry captured successfully","metadata":{"latencyMs":180,"promptTokens":140,"completionTokens":180,"totalTokens":320,"model":"gemini-1.5-flash"}}
+{"timestamp":"2026-05-26T05:11:30.606Z","level":"info","component":"AiEngine","message":"Incident analysis completed successfully using primary provider (Gemini).","metadata":{}}
+{"timestamp":"2026-05-26T05:11:30.606Z","level":"info","component":"AiEngine","message":"Initializing operational incident analysis...","metadata":{"incidentTitle":"GPU Out of Memory Leak"}}
+{"timestamp":"2026-05-26T05:11:30.607Z","level":"info","component":"AiEngine","message":"Resolved primary provider: Gemini","metadata":{"model":"gemini-1.5-flash"}}
+{"timestamp":"2026-05-26T05:11:30.607Z","level":"info","component":"GeminiProvider","message":"Dispatching query to gemini-1.5-flash (temperature: 0.2)...","metadata":{}}
+{"timestamp":"2026-05-26T05:11:30.608Z","level":"warn","component":"AiEngine","message":"Primary provider (Gemini) failed operational loop: HTTP 500: Server Internal Error","metadata":{}}
+{"timestamp":"2026-05-26T05:11:30.608Z","level":"warn","component":"AiEngine","message":"Initiating automated failover loop to secondary provider: OpenAI...","metadata":{"model":"gpt-4o-mini"}}
+{"timestamp":"2026-05-26T05:11:30.608Z","level":"info","component":"OpenAIProvider","message":"Dispatching query to gpt-4o-mini (temperature: 0.2)...","metadata":{}}
+{"timestamp":"2026-05-26T05:11:30.609Z","level":"telemetry","component":"OpenAIProvider","message":"Inference telemetry captured successfully","metadata":{"latencyMs":220,"promptTokens":155,"completionTokens":190,"totalTokens":345,"model":"gpt-4o-mini"}}
+{"timestamp":"2026-05-26T05:11:30.609Z","level":"info","component":"AiEngine","message":"Failover query completed successfully using fallback provider (OpenAI).","metadata":{}}

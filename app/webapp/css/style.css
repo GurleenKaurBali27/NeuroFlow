@@ -1,0 +1,891 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* --- Spacing Scale --- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+
+  /* --- Shadow System --- */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  /* --- Animation Timings --- */
+  --transition-fast: 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-normal: 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-slow: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* --- Theme Variables: Dark Mode (Default) --- */
+  --nf-bg: #07090d;
+  --nf-panel: rgba(13, 20, 30, 0.55);
+  --nf-panel-solid: #0d141e;
+  --nf-border: rgba(255, 255, 255, 0.05);
+  --nf-border-glow: rgba(0, 229, 255, 0.06);
+  
+  --nf-accent: #00e5ff;
+  --nf-accent-glow: rgba(0, 229, 255, 0.15);
+  --nf-muted: #8493a5;
+  --nf-text: #e2e8f0;
+  --nf-title-text: #ffffff;
+  --nf-card: rgba(20, 30, 45, 0.35);
+  --nf-card-hover: rgba(30, 45, 65, 0.55);
+  --nf-timeline-line: rgba(255, 255, 255, 0.04);
+  
+  --nf-success: #10b981;
+  --nf-success-glow: rgba(16, 185, 129, 0.12);
+  
+  --nf-warning: #f59e0b;
+  --nf-warning-glow: rgba(245, 158, 11, 0.12);
+  
+  --nf-danger: #ef4444;
+  --nf-danger-glow: rgba(239, 68, 68, 0.12);
+  
+  --nf-special: #a855f7;
+  
+  --glass-blur: blur(16px) saturate(180%);
+  --glass-shadow: 0 12px 40px 0 rgba(2, 4, 8, 0.7);
+  --blueprint-line: rgba(255, 255, 255, 0.008);
+  --twin-bg: #05070a;
+}
+
+/* --- Theme Variables: Light Mode --- */
+.nf-theme-light {
+  --nf-bg: #eceff3; /* Premium blue-gray soft background */
+  --nf-panel: rgba(255, 255, 255, 0.75);
+  --nf-panel-solid: #ffffff;
+  --nf-border: rgba(15, 23, 42, 0.08);
+  --nf-border-glow: rgba(0, 143, 163, 0.08);
+  
+  --nf-accent: #008fa3; /* Adjusted high contrast cyan for light mode */
+  --nf-accent-glow: rgba(0, 143, 163, 0.12);
+  --nf-muted: #57657a;
+  --nf-text: #334155;
+  --nf-title-text: #0f172a;
+  --nf-card: rgba(255, 255, 255, 0.65);
+  --nf-card-hover: rgba(255, 255, 255, 0.98);
+  --nf-timeline-line: rgba(15, 23, 42, 0.06);
+  
+  --nf-success: #059669;
+  --nf-success-glow: rgba(5, 150, 105, 0.1);
+  
+  --nf-warning: #d97706;
+  --nf-warning-glow: rgba(217, 119, 6, 0.1);
+  
+  --nf-danger: #dc2626;
+  --nf-danger-glow: rgba(220, 38, 38, 0.1);
+  
+  --nf-special: #7c3aed;
+  
+  --glass-blur: blur(20px) saturate(140%);
+  --glass-shadow: 0 10px 30px 0 rgba(15, 23, 42, 0.04);
+  --blueprint-line: rgba(15, 23, 42, 0.015);
+  --twin-bg: #f8fafc;
+}
+
+/* Universal Transition for Elegant Cinematic Mode Shifts */
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+section,
+p,
+a,
+button {
+  transition: background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+              color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Base resets & typography */
+html,
+body {
+  background-color: var(--nf-bg) !important;
+  color: var(--nf-text) !important;
+  font-family: var(--nf-font-stack) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Standard scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(142, 156, 174, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nf-accent-glow);
+}
+
+/* Override SAP UI5 standard shell & app elements for cohesive theme */
+.sapUiBody,
+.sapMPage,
+.sapMPageHeader,
+.sapMBar,
+.sapMApp,
+.sapMShell,
+.sapMShellContent {
+  background-color: var(--nf-bg) !important;
+  color: var(--nf-text) !important;
+  font-family: var(--nf-font-stack) !important;
+}
+
+.sapMBar {
+  background: var(--nf-panel) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--nf-border) !important;
+  height: 60px !important;
+}
+
+.nfPage {
+  background-color: var(--nf-bg) !important;
+}
+
+.nfTopBar {
+  box-shadow: var(--glass-shadow);
+}
+
+.nfTitle {
+  font-family: var(--nf-font-stack) !important;
+  color: var(--nf-title-text) !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+  letter-spacing: 0.6px;
+}
+
+.nfStatusBar {
+  gap: 2rem;
+  color: var(--nf-muted) !important;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.nfHighlight {
+  color: var(--nf-accent) !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 8px var(--nf-accent-glow);
+}
+
+/* Main Dashboard Grid Layout with Spacious Gutters */
+.nfMainLayout {
+  height: calc(100vh - 60px);
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  display: flex;
+  box-sizing: border-box;
+  background-color: var(--nf-bg) !important;
+}
+
+/* Navigation Rail (Futuristic Side Panel - Wider & Spacious) */
+.nfNavRail {
+  width: 72px;
+  min-width: 72px;
+  background: var(--nf-panel) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  padding: var(--spacing-lg) var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--nf-border);
+  border-radius: 14px;
+  box-sizing: border-box;
+  box-shadow: var(--glass-shadow);
+  animation: panelFadeIn 0.5s ease-out;
+}
+
+.nfNavTop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.nfNavFooter {
+  background: transparent !important;
+  color: var(--nf-muted) !important;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Navigation button micro-interactions */
+.navBtn {
+  min-width: 46px !important;
+  min-height: 46px !important;
+  border-radius: 10px !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+  color: var(--nf-muted) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.navBtn .sapMBtnContent {
+  color: var(--nf-muted) !important;
+}
+
+.navBtn:hover {
+  color: var(--nf-accent) !important;
+  background: var(--nf-accent-glow) !important;
+  border: 1px solid rgba(0, 229, 255, 0.15) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.08);
+}
+
+.navBtn:hover .sapMBtnContent {
+  color: var(--nf-accent) !important;
+}
+
+/* Central canvas */
+.nfCanvas {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: var(--spacing-lg);
+  box-sizing: border-box;
+  animation: panelFadeIn 0.6s ease-out;
+}
+
+/* Right AI intelligence panel - Breathable sidebar layout */
+.nfAIPanel {
+  width: 340px;
+  min-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  box-sizing: border-box;
+  background-color: var(--nf-bg) !important;
+  animation: panelFadeIn 0.7s ease-out;
+}
+
+/* KPI Tiles Row styling (Spacious & Cinematic) */
+.kpiRow {
+  display: flex;
+  gap: var(--spacing-lg);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.kpiTile {
+  background: var(--nf-card) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  padding: 20px !important;
+  border-radius: 14px !important;
+  width: 32.2%;
+  box-shadow: var(--glass-shadow);
+  transition: all var(--transition-normal);
+  border: 1px solid var(--nf-border) !important;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpiTile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--nf-accent), transparent);
+  opacity: 0.15;
+  transition: opacity 0.35s;
+}
+
+.kpiTile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px var(--nf-border-glow);
+  border-color: var(--nf-accent-glow) !important;
+  background: var(--nf-card-hover) !important;
+}
+
+.kpiTile:hover::before {
+  opacity: 0.6;
+}
+
+.kpiLabel {
+  color: var(--nf-muted) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.kpiValue {
+  color: var(--nf-title-text) !important;
+  font-family: var(--nf-font-stack) !important;
+  font-weight: 700 !important;
+  margin: 8px 0 !important;
+  font-size: 2rem !important;
+  letter-spacing: -0.5px;
+}
+
+.kpiUnit {
+  color: var(--nf-muted) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.2px;
+}
+
+/* Glassmorphism Panel Hierarchy - Large padding for breathing room */
+.opsPanel,
+.feedPanel,
+.workflowPanel,
+.healthPanel,
+.kpiPanel,
+.aiPanelInner,
+.aiRec {
+  background: var(--nf-panel) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 14px !important;
+  border: 1px solid var(--nf-border) !important;
+  box-shadow: var(--glass-shadow);
+  color: var(--nf-text) !important;
+  box-sizing: border-box;
+  padding: var(--spacing-sm) 0 !important;
+}
+
+.sapMPanel {
+  background-color: var(--nf-panel) !important;
+  border-radius: 14px !important;
+  border: 1px solid var(--nf-border) !important;
+  box-shadow: var(--glass-shadow);
+  padding: 0 !important;
+}
+
+.sapMPanelHeader {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.005)) !important;
+  border-bottom: 1px solid var(--nf-border) !important;
+  height: 52px !important;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 14px !important;
+  border-top-right-radius: 14px !important;
+  padding: 0 var(--spacing-lg) !important;
+}
+
+.sapMPanelHeaderText {
+  color: var(--nf-title-text) !important;
+  font-family: var(--nf-font-stack) !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.sapMPanelContent {
+  padding: var(--spacing-lg) !important;
+  background-color: transparent !important;
+}
+
+/* Canvas layouts */
+.canvasInner {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  box-sizing: border-box;
+}
+
+.opsLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  box-sizing: border-box;
+}
+
+.opsRight {
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  box-sizing: border-box;
+}
+
+/* Event Feed with Spacious Timeline Layout & Alternating Backgrounds */
+.feedItem {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--nf-border) !important;
+  color: var(--nf-text) !important;
+}
+
+#eventFeed .sapMListItem {
+  padding: 16px 20px 16px 36px !important;
+  position: relative;
+}
+
+/* Alternating Row depths for high readability scanning */
+#eventFeed .sapMListItem:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.01) !important;
+}
+.nf-theme-light #eventFeed .sapMListItem:nth-child(even) {
+  background-color: rgba(15, 23, 42, 0.015) !important;
+}
+
+.muted {
+  color: var(--nf-muted) !important;
+  font-size: 11px !important;
+  font-weight: 500;
+}
+
+.severityBtn {
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  transition: all var(--transition-fast) ease !important;
+}
+
+.severityBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Workflow card styling */
+.wfCard {
+  background: var(--nf-card) !important;
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  border: 1px solid var(--nf-border) !important;
+  margin: var(--spacing-sm) 0;
+  color: var(--nf-text) !important;
+  transition: all var(--transition-normal);
+}
+
+.wfCard:hover {
+  background: var(--nf-card-hover) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.wfTitle {
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  color: var(--nf-title-text) !important;
+  letter-spacing: 0.3px;
+}
+
+/* AI Panel items */
+.insightTitle {
+  font-weight: 700 !important;
+  color: var(--nf-accent) !important;
+}
+
+/* Custom list override for high fidelity cockpit */
+.sapMList,
+.sapMListUl {
+  background-color: transparent !important;
+}
+
+.sapMListItem,
+.sapMLIB {
+  background-color: transparent !important;
+  border-bottom: 1px solid var(--nf-border) !important;
+  color: var(--nf-text) !important;
+  transition: background-color var(--transition-fast) ease, border-color var(--transition-fast) ease !important;
+}
+
+.sapMListItem:hover {
+  background-color: rgba(0, 229, 255, 0.03) !important;
+  border-bottom-color: rgba(0, 229, 255, 0.1) !important;
+}
+
+.nf-theme-light .sapMListItem:hover {
+  background-color: rgba(0, 143, 163, 0.03) !important;
+  border-bottom-color: rgba(0, 143, 163, 0.1) !important;
+}
+
+.sapMListItemBase {
+  background-color: transparent !important;
+  color: var(--nf-text) !important;
+}
+
+.sapMText {
+  color: var(--nf-text) !important;
+  font-family: var(--nf-font-stack) !important;
+}
+
+/* Custom indicator meters */
+.sapMProgressIndicator {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid var(--nf-border) !important;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 20px !important;
+}
+
+.sapMProgressIndicatorBar {
+  background: linear-gradient(90deg, var(--nf-accent), #0099ff) !important;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.25);
+  transition: width 0.7s cubic-bezier(0.1, 0.8, 0.2, 1) !important;
+}
+
+.nf-theme-light .sapMProgressIndicatorBar {
+  box-shadow: 0 0 8px rgba(0, 143, 163, 0.2);
+}
+
+/* Glow pulses */
+.nfPulse {
+  font-size: 11px !important;
+  margin-left: 8px;
+  display: inline-block;
+  text-shadow: 0 0 8px currentColor;
+}
+
+.nfPulseGreen {
+  color: var(--nf-success) !important;
+  animation: nfPulseAnim 2s infinite ease-in-out;
+}
+
+.nfPulseRed {
+  color: var(--nf-danger) !important;
+  animation: nfPulseAnim 1.2s infinite ease-in-out;
+}
+
+@keyframes nfPulseAnim {
+  0% { opacity: 0.35; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); text-shadow: 0 0 12px currentColor; }
+  100% { opacity: 0.35; transform: scale(0.9); }
+}
+
+/* Event Mesh notification toaster */
+.notificationArea {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  pointer-events: none;
+  width: 350px;
+}
+
+/* Premium translucent alert cards */
+.nfSlideInAlert {
+  pointer-events: auto;
+  background: var(--nf-panel) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--nf-border) !important;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow-lg);
+  color: var(--nf-text) !important;
+  font-family: var(--nf-font-stack) !important;
+  animation: nfAlertSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15) forwards;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.nfSlideInAlert::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--nf-accent);
+}
+
+.nfAlert-success::before { background: var(--nf-success) !important; }
+.nfAlert-warning::before { background: var(--nf-warning) !important; }
+.nfAlert-error::before { background: var(--nf-danger) !important; }
+.nfAlert-high::before { background: var(--nf-danger) !important; }
+.nfAlert-info::before { background: var(--nf-accent) !important; }
+
+.nfAlertHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.nfAlertIcon {
+  font-size: 14px;
+}
+
+.nfAlertTitle {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--nf-title-text);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.nfAlertBody {
+  font-size: 11px;
+  color: var(--nf-muted);
+  line-height: 1.5;
+}
+
+.nfFadeOut {
+  animation: nfAlertSlideOut 0.35s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards !important;
+}
+
+@keyframes nfAlertSlideIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes nfAlertSlideOut {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to { opacity: 0; transform: translateX(80px) scale(0.92); }
+}
+
+/* Event log timeline graphics */
+#eventFeed .sapMListUl::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 14px;
+  bottom: 14px;
+  width: 1px;
+  background: var(--nf-timeline-line);
+}
+
+#eventFeed .sapMListItem::before {
+  content: "";
+  position: absolute;
+  left: 21px;
+  top: 26px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--nf-accent);
+  box-shadow: 0 0 8px var(--nf-accent);
+  transition: all 0.2s ease;
+}
+
+#eventFeed .sapMListItem:hover::before {
+  transform: scale(1.3);
+}
+
+#eventFeed .sapMListItem[info="error"]::before { background: var(--nf-danger); box-shadow: 0 0 8px var(--nf-danger); }
+#eventFeed .sapMListItem[info="warning"]::before { background: var(--nf-warning); box-shadow: 0 0 8px var(--nf-warning); }
+#eventFeed .sapMListItem[info="success"]::before { background: var(--nf-success); box-shadow: 0 0 8px var(--nf-success); }
+
+/* Digital Twin visualization screen with Premium Depth Isolation */
+.twinLayout {
+  background: var(--twin-bg) !important;
+  border-radius: 14px !important;
+  border: 1px solid var(--nf-border) !important;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  animation: panelFadeIn 0.5s ease-out;
+  padding: 0 !important;
+}
+
+.digitalTwinCanvas {
+  width: 100%;
+  height: 500px;
+  background-color: var(--twin-bg);
+  background-image: 
+    linear-gradient(var(--blueprint-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  position: relative;
+}
+
+/* HUD panels */
+.nfPanelToolbar {
+  background: transparent !important;
+  border-bottom: 1px solid var(--nf-border) !important;
+  height: 52px !important;
+  padding: 0 var(--spacing-lg) !important;
+}
+
+.nfPanelTitle {
+  color: var(--nf-title-text) !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Custom dashboard switch styling */
+.sapMSegB {
+  background: rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid var(--nf-border) !important;
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.nf-theme-light .sapMSegB {
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
+.sapMSegBBtn {
+  background: transparent !important;
+  color: var(--nf-muted) !important;
+  border: none !important;
+  border-radius: 6px !important;
+  transition: all var(--transition-fast) ease !important;
+}
+
+.sapMSegBBtn .sapMSegBBtnText,
+.sapMSegBBtn .sapUiIcon {
+  color: var(--nf-muted) !important;
+}
+
+.sapMSegBBtn.sapMSegBBtnSel {
+  background: var(--nf-panel-solid) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.sapMSegBBtn.sapMSegBBtnSel .sapMSegBBtnText,
+.sapMSegBBtn.sapMSegBBtnSel .sapUiIcon {
+  color: var(--nf-accent) !important;
+  text-shadow: 0 0 8px var(--nf-accent-glow);
+}
+
+/* Smooth fade-in animation for panels */
+@keyframes panelFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loader HUD style */
+.nfLoader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--nf-bg);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.nfLoader.active {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.nfLoaderRing {
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(0, 229, 255, 0.1);
+  border-top-color: var(--nf-accent);
+  border-radius: 50%;
+  animation: nfSpin 0.8s linear infinite;
+  box-shadow: 0 0 15px var(--nf-accent-glow);
+}
+
+@keyframes nfSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Operational Cockpit High-Fidelity Utility Classes */
+.kpiTrendText {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.4px;
+}
+
+.textBold {
+  font-weight: 700 !important;
+}
+
+.aiAgentTitle {
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.3px;
+  color: var(--nf-title-text) !important;
+}
+
+.textSmall {
+  font-size: 10px !important;
+}
+
+.telemetryMeterHeader {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  color: var(--nf-muted) !important;
+  letter-spacing: 0.6px;
+}
+
+/* Responsive Viewports */
+@media (max-width: 1024px) {
+  .nfAIPanel {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .nfMainLayout {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+
+  .nfNavRail {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-right: none;
+    border-bottom: 1px solid var(--nf-border);
+  }
+
+  .nfNavTop {
+    flex-direction: row;
+  }
+
+  .kpiRow {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .kpiTile {
+    width: 100% !important;
+  }
+
+  .canvasInner {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .opsRight {
+    width: 100%;
+  }
+}

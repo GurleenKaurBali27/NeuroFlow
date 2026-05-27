@@ -1,0 +1,4 @@
+ID,createdAt,createdBy,modifiedAt,modifiedBy,code,name,description,head
+dept-0000-0000-0000-000000000001,2026-05-26T08:00:00Z,system,2026-05-26T08:00:00Z,system,ITOPS,IT Operations,Infrastructure monitoring and system maintenance,Jane Doe
+dept-0000-0000-0000-000000000002,2026-05-26T08:05:00Z,system,2026-05-26T08:05:00Z,system,AIENG,AI Engineering,Orchestration of ML models and prediction pipelines,John Smith
+dept-0000-0000-0000-000000000003,2026-05-26T08:10:00Z,system,2026-05-26T08:10:00Z,system,SECURE,Security Operations,Threat response and network vulnerability remediation,Alice Williams

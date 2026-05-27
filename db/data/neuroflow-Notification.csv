@@ -1,0 +1,5 @@
+ID,createdAt,createdBy,modifiedAt,modifiedBy,title,message,isRead,recipient,priority
+notif-0000-0000-0000-000000000001,2026-05-26T09:01:00Z,system,2026-05-26T09:01:00Z,system,CRITICAL GPU Memory Spike,Node gpu-node-03 has exceeded 99% VRAM limit. Incident created automatically.,false,ITOPS,CRITICAL
+notif-0000-0000-0000-000000000002,2026-05-26T09:12:00Z,system,2026-05-26T09:12:00Z,system,API Gateway Latency Alert,API response time has exceeded SLA. High-throughput rate limit recommended.,false,ITOPS,HIGH
+notif-0000-0000-0000-000000000003,2026-05-26T09:22:00Z,system,2026-05-26T09:22:00Z,system,Intrusion Block Applied,Outbound malicious port scanning blocked. Host isolation process in progress.,false,SECURE,CRITICAL
+notif-0000-0000-0000-000000000004,2026-05-26T09:00:00Z,system,2026-05-26T09:00:00Z,system,Daily Backup Job Succeeded,Archival backup completed successfully after timeout check adjustments.,true,ITOPS,MEDIUM

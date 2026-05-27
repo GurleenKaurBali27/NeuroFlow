@@ -1,0 +1,43 @@
+{
+  "name": "neuroflow",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NeuroFlow enterprise CAP and SAP UI5 project for future operational intelligence.",
+  "main": "srv/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start:backend": "cds run",
+    "start:frontend": "ui5 serve --config app/ui5.yaml --open",
+    "dev:backend": "cds watch",
+    "dev:frontend": "ui5 serve --config app/ui5.yaml --open",
+    "db:init": "cds deploy --to sqlite:db/data/neuroflow.db",
+    "build:ui5": "ui5 build --config app/ui5.yaml --clean-dest dist",
+    "test:actions": "node scratch_run.js"
+  },
+  "dependencies": {
+    "@sap/cds": "^6.11.0",
+    "@sap/cds-sqlite": "^2.1.15",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^3.2.4",
+    "ui5-middleware-simpleproxy": "^1.0.14"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "[development]": {
+          "kind": "sqlite",
+          "credentials": {
+            "database": "db/data/neuroflow.db"
+          }
+        },
+        "[production]": {
+          "kind": "hana"
+        }
+      }
+    }
+  }
+}

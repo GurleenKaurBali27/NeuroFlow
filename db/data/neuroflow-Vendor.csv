@@ -1,0 +1,4 @@
+ID,createdAt,createdBy,modifiedAt,modifiedBy,code,name,contactName,email,phone,status
+vend-0000-0000-0000-000000000001,2026-05-26T08:00:00Z,system,2026-05-26T08:00:00Z,system,VEND-COGNITIVE,Cognitive Systems Inc,Sarah Connor,support@cognitivesystems.com,+1-555-0199,ACTIVE
+vend-0000-0000-0000-000000000002,2026-05-26T08:00:00Z,system,2026-05-26T08:00:00Z,system,VEND-INFRASOLVE,InfraSolve Services,Bruce Wayne,bruce@infrasolve.net,+1-555-0144,ACTIVE
+vend-0000-0000-0000-000000000003,2026-05-26T08:00:00Z,system,2026-05-26T08:00:00Z,system,VEND-SECURENET,SecureNet Systems,Diana Prince,diana@securenet.org,+1-555-0177,ACTIVE
